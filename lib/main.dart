@@ -1,9 +1,12 @@
+import 'package:bfa/onboard.dart';
 import 'package:bfa/teacher_view.dart';
 import 'package:flutter/material.dart';
 import 'teacher_view.dart';
 import 'blu.dart';
 import 'text.dart';
+import 'onboard.dart';
 import 'extractargs.dart';
+import 'buttons.dart';
 import 'screen_args.dart';
 void main() => runApp(MyApp());
 
@@ -73,38 +76,7 @@ class HomeScreen extends StatelessWidget {
           border:
           OutlineInputBorder(borderRadius: BorderRadius.circular(2.0))),
     );
-
-    final loginButton = Material(
-      elevation: 5.0,
-      borderRadius:  BorderRadius.circular(32.0),
-      color: Colors.white,
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-         onPressed: () {
-                // When the user taps the button, navigate to the specific route
-                // and provide the arguments as part of the RouteSettings.
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TeacherView(),
-                    // Pass the arguments as part of the RouteSettings. The
-                    // ExtractArgumentScreen reads the arguments from these
-                    // settings.
-                    settings: RouteSettings(
-                      arguments: ScreenArguments(
-                        'Rick',
-                        'auth',
-                      ),
-                    ),
-                  ),
-                );
-              },
-        child: Text("Login",
-          textAlign: TextAlign.center,
-        style: headerTextStyle.copyWith(color: Colors.black))
-        ),
-    );
+   
     return
      Scaffold(
       // appBar: AppBar(
@@ -115,7 +87,7 @@ class HomeScreen extends StatelessWidget {
         child: Container(
         width: MediaQuery.of(context).size.width / 1.2,
         margin: EdgeInsets.only(top:3.0),
-        color: Colors.yellowAccent,
+        color: Colors.black,
         child: SingleChildScrollView(
           child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -124,23 +96,26 @@ class HomeScreen extends StatelessWidget {
               title: Text("Here Here", style: headerTextStyle.copyWith(fontSize: 48)),
             ),
              SizedBox(
-                  height: 155.0,
+                  height: 50.0,
                   child: Image.asset(
                     "assets/logo.png",
                     fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(height: 45.0),
+                SizedBox(height: 15.0),
                 emailField,
-                SizedBox(height: 25.0),
+                SizedBox(height: 15.0),
                 passwordField,
-                SizedBox(
-                  height: 35.0,
-                ),
-                loginButton,
                 SizedBox(
                   height: 15.0,
                 ),
+                Button(title: "login",goTo: TeacherView()),
+                SizedBox(height: 15.0),
+                Button(title: "signup", goTo: SignUpView()),
+                SizedBox(
+                  height: 15.0,
+                ),
+     
             // A button that navigates to a named route that. The named route
             // extracts the arguments by itself.
 

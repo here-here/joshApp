@@ -1,6 +1,10 @@
+import 'package:bfa/teacher_view.dart';
 import 'package:flutter/material.dart';
+import 'teacher_view.dart';
 import 'blu.dart';
+import 'text.dart';
 import 'extractargs.dart';
+import 'screen_args.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -47,26 +51,33 @@ class HomeScreen extends StatelessWidget {
       obscureText: false,
       style: style,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        fillColor: Colors.white,
+        filled: true,
+        contentPadding:
+          EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "userID",
           border:
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+          OutlineInputBorder(borderRadius: BorderRadius.circular(2.0))),
     );
 
     final passwordField = TextField(
-      obscureText: false,
+      obscureText: true,
+
+
       style: style,
       decoration: InputDecoration(
+                      fillColor: Colors.white,
+        filled: true,
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
           border:
-          OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+          OutlineInputBorder(borderRadius: BorderRadius.circular(2.0))),
     );
 
     final loginButton = Material(
       elevation: 5.0,
       borderRadius:  BorderRadius.circular(32.0),
-      color: Color(0xff01A0C7),
+      color: Colors.white,
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -76,14 +87,14 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Screen2(),
+                    builder: (context) => TeacherView(),
                     // Pass the arguments as part of the RouteSettings. The
                     // ExtractArgumentScreen reads the arguments from these
                     // settings.
                     settings: RouteSettings(
                       arguments: ScreenArguments(
-                        'Extract Arguments Screen',
-                        'screen 2.',
+                        'Rick',
+                        'auth',
                       ),
                     ),
                   ),
@@ -91,21 +102,27 @@ class HomeScreen extends StatelessWidget {
               },
         child: Text("Login",
           textAlign: TextAlign.center,
-        style: style.copyWith(
-          color: Colors.white, fontWeight: FontWeight.bold)),
+        style: headerTextStyle.copyWith(color: Colors.black))
         ),
     );
     return
      Scaffold(
-      appBar: AppBar(
-        title: Text('Home Screen'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Home Screen'),
+      // ),
+      backgroundColor: Colors.black,
       body: Center(
+        child: Container(
+        width: MediaQuery.of(context).size.width / 1.2,
+        margin: EdgeInsets.only(top:3.0),
+        color: Colors.yellowAccent,
         child: SingleChildScrollView(
           child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
+            ListTile(
+              title: Text("Here Here", style: headerTextStyle.copyWith(fontSize: 48)),
+            ),
              SizedBox(
                   height: 155.0,
                   child: Image.asset(
@@ -126,54 +143,11 @@ class HomeScreen extends StatelessWidget {
                 ),
             // A button that navigates to a named route that. The named route
             // extracts the arguments by itself.
-            RaisedButton(
-              child: Text("Navigate to screen that extracts arguments"),
-              onPressed: () {
-                // When the user taps the button, navigate to the specific route
-                // and provide the arguments as part of the RouteSettings.
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ExtractArgumentsScreen(),
-                    // Pass the arguments as part of the RouteSettings. The
-                    // ExtractArgumentScreen reads the arguments from these
-                    // settings.
-                    settings: RouteSettings(
-                      arguments: ScreenArguments(
-                        'Extract Arguments Screen',
-                        'This message is extracted in the build method.',
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-            RaisedButton(
-              child: Text("Navigate to screen that extracts arguments"),
-              onPressed: () {
-                // When the user taps the button, navigate to the specific route
-                // and provide the arguments as part of the RouteSettings.
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Screen2(),
-                    // Pass the arguments as part of the RouteSettings. The
-                    // ExtractArgumentScreen reads the arguments from these
-                    // settings.
-                    settings: RouteSettings(
-                      arguments: ScreenArguments(
-                        'Extract Arguments Screen',
-                        'screen 2.',
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
 
           ],
         ),
         ),
+      ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screen_args.dart';
 
 class ExtractArgumentsScreen extends StatelessWidget {
   static const routeName = '/extractArguments';
@@ -20,9 +21,4 @@ class ExtractArgumentsScreen extends StatelessWidget {
   }
 }
 
-class ScreenArguments {
-  final String title;
-  final String message;
 
-  ScreenArguments(this.title, this.message);
-}

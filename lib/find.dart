@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:shimmer/shimmer.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
@@ -7,7 +8,7 @@ import 'ImageBanner.dart';
 import 'package:beacon_broadcast/beacon_broadcast.dart';
 
 
-class Screen2 extends StatelessWidget
+class FindDevice extends StatelessWidget
 {
   BeaconBroadcast beaconBroadcast = BeaconBroadcast();
   FlutterBlue flutterBlue = FlutterBlue.instance;
@@ -18,13 +19,14 @@ class Screen2 extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double height = size.height/3;
+    double height = size.height/1.5;
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new Stack(
           children: [
-            ImageBanner("assets/images/Logo.png"),
+
             Scaffold(
+              backgroundColor: Colors.black,
               body: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(image: AssetImage("assets/images/Logo.png"), fit: BoxFit.cover),
@@ -34,19 +36,24 @@ class Screen2 extends StatelessWidget
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TextSection(Text('Here Here')),
-                      TextSection(Text('Attendance')),
+                      SizedBox(
+                        width: 500.0,
+                        height: 500.0,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.white,
+                          highlightColor: Colors.grey,
+                          
+                          child: Icon(Icons.bluetooth_searching, size: 400)
+                        ),
+                      ),
+
                       RaisedButton(
 //                        padding: EdgeInsets.fromLTRB(10.0, 50.0, 10.0, 5.0),
                         color: Colors.blue,
-                        child: Text("Test"),
+                        child: Text("Find"),
                         onPressed: () {myFunction();},
                       ),
-                      RaisedButton(
-                        color: Colors.red,
-                        child: Text("get beacons"),
-                        onPressed: () {myFunction2();},
-                      ),
+
 
                     ],
                   ),

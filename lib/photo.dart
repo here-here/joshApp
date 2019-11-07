@@ -5,7 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'screen_args.dart';
-import 'blu.dart';
+import 'broadcast.dart';
+
 
 Future<List<Course>> fetchCourses(http.Client client) async {
   final response =
@@ -122,7 +123,7 @@ class CoursesList extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Screen2(),
+                                      builder: (context) => BroadCast(),
                                       // Pass the arguments as part of the RouteSettings. The
                                       // ExtractArgumentScreen reads the arguments from these
                                       // settings.

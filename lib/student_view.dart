@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 
 
-class TeacherView extends StatelessWidget {
-  static const routeName = '/TeacherView';
+class StudentView extends StatelessWidget {
+  static const routeName = '/StudentView';
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class TeacherView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
                 backgroundColor: Colors.black,
-        title: Text("My Classes(TEACHER)", style: headerTextStyle)
+        title: Text("My Classes(STUDENT)", style: headerTextStyle)
       ),
       body: Padding(
         child: FutureBuilder<List<Course>>(

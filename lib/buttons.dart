@@ -1,7 +1,12 @@
  import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'text.dart';
 import 'screen_args.dart';
 import 'onboard.dart';
+
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget{
 
@@ -69,6 +74,39 @@ class Settings extends StatelessWidget{
 
   }
 }
+
+class ActionButton extends StatelessWidget{
+
+    final String title;
+    final Icon icon;
+    final double height;
+  const ActionButton({@required this.title, @required this.icon, @required this.height});
+
+  @override
+  Widget build(BuildContext context) {
+        return SizedBox(
+            height: this.height,
+              width: MediaQuery.of(context).size.width / 1.2,
+                child: ButtonTheme(
+                  minWidth: MediaQuery.of(context).size.width / 1.2,                  
+                  child:FlatButton.icon(
+                    
+                    color: Colors.blue[600],
+                      icon: this.icon,
+                      label: Shimmer.fromColors(baseColor: Colors.white, highlightColor: Colors.grey[100], child:Text(title,style: headerTextStyle)),
+                      onPressed: () {}
+                    ),
+                  ),
+        );
+    
+
+                    
+  }
+
+
+
+}
+
 
 class Button extends StatelessWidget{
   final String title;

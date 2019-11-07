@@ -2,9 +2,77 @@
 import 'text.dart';
 import 'screen_args.dart';
 import 'onboard.dart';
+
+class Settings extends StatelessWidget{
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+  // Add a ListView to the drawer. This ensures the user can scroll
+  // through the options in the drawer if there isn't enough vertical
+  // space to fit everything.
+  child: ListView(
+    // Important: Remove any padding from the ListView.
+    padding: EdgeInsets.zero,
+    children: <Widget>[
+      Container(
+        height: 120,
+        child:
+        DrawerHeader(
+          child: Text('Hello'),
+          decoration: BoxDecoration(
+            color: Colors.black38,
+          ),
+        ),
+      ),
+      ListTile(
+        title: Text('Settings'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+          Navigator.pop(context);
+
+        },
+      ),
+      ListTile(
+        title: Text('Reports'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+          Navigator.pop(context);
+
+        },
+      ),
+      ListTile(
+        title: Text('Help'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+          Navigator.pop(context);
+
+        },
+      ),
+      ListTile(
+        title: Text('Logout'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+          Navigator.pop(context);
+
+        },
+      ),
+    ],
+  ),
+);
+
+
+
+  }
+}
+
 class Button extends StatelessWidget{
   final String title;
-  final StatelessWidget goTo;
+  final Widget goTo;
   const Button({@required this.title, @required this.goTo});
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:flutter_blue/flutter_blue.dart';
 import 'TextSection.dart';
 import 'ImageBanner.dart';
 import 'package:beacon_broadcast/beacon_broadcast.dart';
-
+import 'photo.dart';
 
 class BroadCast extends StatelessWidget
 {
@@ -26,6 +26,10 @@ class BroadCast extends StatelessWidget
           children: [
 
             Scaffold(
+                    appBar: AppBar(
+                backgroundColor: Colors.black,
+        title: Text("My Classes(TEACHER)", style: headerTextStyle)
+                    ),
               backgroundColor: Colors.black,
               body: Container(
                 decoration: BoxDecoration(

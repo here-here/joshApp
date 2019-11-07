@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'screen_args.dart';
 import 'broadcast.dart';
+import 'dart:math';
 
 
 Future<List<Course>> fetchCourses(http.Client client) async {
   final response =
-      await client.get('https://api.myjson.com/bins/fibeg');
+      await client.get('https://api.myjson.com/bins/rtv2k');
 
   // Use the compute function to run parseCourses in a separate isolate
   return compute(parseCourses, response.body);
@@ -91,6 +92,8 @@ class CoursesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    List colors = [Colors.green[400], Colors.deepPurple[400], Colors.orange[400], Colors.red[400], Colors.brown[500]];
     return ListView.builder(
       itemCount: Courses.length,
       itemBuilder: (context, index) {
@@ -99,10 +102,10 @@ class CoursesList extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               margin: EdgeInsets.only(top:3.0),
-                color: Colors.black,
+                color: Colors.white,
                 alignment: Alignment.center,
                 child: Card(
-                  color: Colors.black,
+                  color: colors[index % colors.length],
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -115,6 +118,29 @@ class CoursesList extends StatelessWidget {
                         child: ButtonBar(
                           children: <Widget>[                         
                             FlatButton(
+                            //color: Colors.white,
+                            child: new Icon(Icons.bluetooth, color: Colors.white),
+                             onPressed: () {
+                                  // When the user taps the button, navigate to the specific route
+                                  // and provide the arguments as part of the RouteSettings.
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => BroadCast(),
+                                      // Pass the arguments as part of the RouteSettings. The
+                                      // ExtractArgumentScreen reads the arguments from these
+                                      // settings.
+                                      settings: RouteSettings(
+                                        arguments: ScreenArguments(
+                                          Courses[index].title,
+                                          Courses[index].body
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                            ),
+                           FlatButton(
                             //color: Colors.white,
                             child: new Icon(Icons.assignment, color: Colors.white),
                              onPressed: () {

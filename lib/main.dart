@@ -82,12 +82,12 @@ class HomeScreen extends StatelessWidget {
       // appBar: AppBar(
       //   title: Text('Home Screen'),
       // ),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.amberAccent[400],
       body: Center(
         child: Container(
         width: MediaQuery.of(context).size.width / 1.2,
         margin: EdgeInsets.only(top:3.0),
-        color: Colors.black,
+        color: Colors.amberAccent[400],
         child: SingleChildScrollView(
           child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

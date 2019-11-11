@@ -1,5 +1,9 @@
-import 'dart:async';
+import 'dart:developer';
+
 import 'package:shimmer/shimmer.dart';
+import 'dart:async';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
@@ -15,10 +19,10 @@ class BroadCast extends StatelessWidget
   FlutterBlue flutterBlue = FlutterBlue.instance;
   StreamSubscription _subscription;
   BluetoothDevice device;
-
   bool started = false;
   @override
   Widget build(BuildContext context) {
+        final CounterBloc bp = CounterBloc();
     Size size = MediaQuery.of(context).size;
     double height = size.height/1.5;
     return Scaffold(
@@ -35,10 +39,16 @@ class BroadCast extends StatelessWidget
               width: MediaQuery.of(context).size.width / 1.2,
               height: 400,
               color: Colors.red[400],
-              child: Center(child:  Text("Waiting...", style: headerTextStyle.copyWith(fontSize: 30))),
+              child: 
+                BlocProvider<CounterBloc>(
+                  builder: (context) => bp,
+                  child: CounterPage(),
+                 )
+ 
+             // child: Center(child:  Text("Waiting...", style: headerTextStyle.copyWith(fontSize: 30))),
             ),
             ),
-            ActionButton(height: 200, title: "Broadcast", icon: Icon(Icons.bluetooth, color: Colors.white,)).build(context),
+            ActionButton(bp: bp, height: 200, title: "Broadcast", icon: Icon(Icons.bluetooth, color: Colors.white,)).build(context),
           ],
         )
       )

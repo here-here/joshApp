@@ -3,6 +3,10 @@ import 'package:shimmer/shimmer.dart';
 import 'text.dart';
 import 'screen_args.dart';
 import 'onboard.dart';
+import 'dart:async';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 
 import 'package:flutter/foundation.dart';
@@ -75,12 +79,59 @@ class Settings extends StatelessWidget{
   }
 }
 
-class ActionButton extends StatelessWidget{
+enum CounterEvent { increment, decrement }
 
+
+class CounterBloc extends Bloc<CounterEvent, int> {
+  @override
+  int get initialState => -1;
+
+  @override
+  Stream<int> mapEventToState(CounterEvent event) async* {
+    switch (event) {
+      case CounterEvent.decrement:
+        yield state*-1;
+        break;
+      case CounterEvent.increment:
+        yield state + 1;
+        break;
+    }
+  }
+}
+
+
+class CounterPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final CounterBloc counterBloc = BlocProvider.of<CounterBloc>(context);
+
+    return Container(
+      child: BlocBuilder<CounterBloc, int>(
+        builder: (context, status) {
+          String _status = "";
+          if (status < 0)
+            _status = "not broadcasting";
+          else
+            _status = "broadcasting";
+          return Center(
+            child: Text(
+              _status,
+              style:headerTextStyle.copyWith(fontSize: 26),
+            ),
+          );
+        },
+      ),
+        );
+  }
+}
+
+
+class ActionButton extends StatelessWidget{
+  final CounterBloc bp;
     final String title;
     final Icon icon;
     final double height;
-  const ActionButton({@required this.title, @required this.icon, @required this.height});
+  const ActionButton({@required this.title, @required this.icon, @required this.height, @required this.bp});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +145,7 @@ class ActionButton extends StatelessWidget{
                     color: Colors.blue[600],
                       icon: this.icon,
                       label: Shimmer.fromColors(baseColor: Colors.white, highlightColor: Colors.grey[100], child:Text(title,style: headerTextStyle)),
-                      onPressed: () {}
+                      onPressed: (){ bp.add(CounterEvent.decrement);}
                     ),
                   ),
         );

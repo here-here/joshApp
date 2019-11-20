@@ -40,7 +40,7 @@ class TeacherView extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 10.0),
       ),
 
-      drawer: Settings(),
+      drawer: TeacherSettings(),
     );
   }
 }

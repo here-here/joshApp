@@ -2,6 +2,7 @@ import 'package:bfa/onboard.dart';
 import 'package:bfa/teacher_view.dart';
 import 'package:flutter/material.dart';
 import 'teacher_view.dart';
+import 'student_view.dart';
 import 'broadcast.dart';
 import 'text.dart';
 import 'onboard.dart';
@@ -109,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 15.0,
                 ),
-                Button(title: "login",goTo: TeacherView()),
+                Button(title: "login",goTo: StudentView()),
                 SizedBox(height: 15.0),
                 Button(title: "signup", goTo: SignUpView()),
                 SizedBox(

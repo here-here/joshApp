@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screen_args.dart';
 import 'photo.dart';
+import 'buttons.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 
@@ -16,10 +17,11 @@ class StudentView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-                backgroundColor: Colors.black,
+        backgroundColor: Colors.black,
         title: Text("My Classes(STUDENT)", style: headerTextStyle)
       ),
-      body: Padding(
+      body: 
+        Padding(
         child: FutureBuilder<List<Course>>(
           future: fetchCourses(http.Client()),
           builder: (context, snapshot) {
@@ -32,6 +34,8 @@ class StudentView extends StatelessWidget {
         ),
         padding: EdgeInsets.fromLTRB(1.0, 10.0, 1.0, 10.0),
       ),
+
+      drawer: StudentSettings(),
     );
   }
 }
